@@ -20,6 +20,12 @@ public class DayOffPage {
     @FindBy(xpath = "//p[@class='MuiTypography-root MuiTypography-body1 css-aqx7sf'][normalize-space()='Day Off']")
     private WebElement pageDayOff;
 
+    @FindBy(xpath = "//h3[normalize-space()='Cuti Bersama']")
+    private WebElement textCutiBersama;
+
+    @FindBy(xpath = "//h3[normalize-space()='Liburan Nasional']")
+    private WebElement textLiburanNasional;
+
 
     public void goToMenuManagement(){
         menuManagement.click();
@@ -28,7 +34,14 @@ public class DayOffPage {
     public void setPageDayOff(){
         pageDayOff.click();
     }
-    public boolean isDayOffPageLoaded() {
-        return pageDayOff.isDisplayed();
+
+    public String getTeksCutiBersama(){
+        return textCutiBersama.getText();
     }
+
+    public String getTeksLiburanNasional(){
+        return textLiburanNasional.getText();
+    }
+
+
 }

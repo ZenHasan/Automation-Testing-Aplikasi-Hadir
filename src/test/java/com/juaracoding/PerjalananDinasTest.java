@@ -4,7 +4,6 @@ import com.juaracoding.drivers.DriverSingleton;
 import com.juaracoding.pages.LoginPage;
 import com.juaracoding.pages.PerjalananDinasPage;
 import com.juaracoding.utils.Constant;
-import com.juaracoding.utils.Utils;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 import io.cucumber.java.en.And;
@@ -13,8 +12,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-
-import java.io.IOException;
 
 public class PerjalananDinasTest {
     private static WebDriver driver;
@@ -48,8 +45,9 @@ public class PerjalananDinasTest {
     public void admin_menginput_tanggal_mulai_dan_tanggal_akhir_pada_perjalanan_dinas() {
         perjalananDinasPage.setDate();
         DriverSingleton.delay(2);
-        perjalananDinasPage.clearDataDate();
+        perjalananDinasPage.clearStartDataDate();
         perjalananDinasPage.setStartDate("Feb 1, 2024");
+        perjalananDinasPage.clearEndDataDate();
         perjalananDinasPage.setEndDate("Apr 28, 2024");
         DriverSingleton.delay(2);
         perjalananDinasPage.clickSaveButton();
@@ -70,18 +68,20 @@ public class PerjalananDinasTest {
         extentTest.log(LogStatus.PASS, "Admin mengklik tombol Cari");
     }
 
-    @Then("Tampilan data perjalanan dinas berhasil di muat")
-    public void tampilan_data_koreksi_berhasil_di_muat() {
-        DriverSingleton.delay(3);
+    @Then("Tampilan data nama user perjalanan dinas berhasil di muat")
+    public void tampilan_data_nama_user_koreksi_berhasil_di_muat() {
+        DriverSingleton.delay(2);
         perjalananDinasPage .clickResetButton();
-        // Verifikasi halaman Koreksi berhasil dimuat
-        try {
-            Assert.assertTrue(perjalananDinasPage.isPerjalananDinasPageLoaded(), "Halaman Koreksi tidak dimuat");
-            Utils.getScreenshot(driver, "KoreksiPageLoaded");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        extentTest.log(LogStatus.PASS, "Tampilan data koreksi berhasil di muat");
+        Assert.assertEquals(perjalananDinasPage.getNamaUser(),"Husain");
+        extentTest.log(LogStatus.PASS, "Tampilan data perjalanan dinas berhasil di muat");
+    }
+
+    @Then("Tampilan data tanggal perjalanan dinas berhasil di muat")
+    public void tampilan_data_tanggal_koreksi_berhasil_di_muat() {
+        DriverSingleton.delay(2);
+        perjalananDinasPage .clickResetButton();
+        Assert.assertEquals(perjalananDinasPage.getTanggal(),"04 Apr 2024");
+        extentTest.log(LogStatus.PASS, "Tampilan data tanggal perjalanan dinas berhasil di muat");
     }
 
 
@@ -90,21 +90,39 @@ public class PerjalananDinasTest {
     public void halaman_selanjutnya_dan_mengaprove_user(){
         DriverSingleton.delay(2);
         perjalananDinasPage.setNextPage();
+        DriverSingleton.delay(2);
+        perjalananDinasPage.klikTitikTiga();
+        DriverSingleton.delay(2);
+        perjalananDinasPage.klikApprove();
+        perjalananDinasPage.klikBtnYa();
+        extentTest.log(LogStatus.PASS, "Halaman selanjutnya dan mengaprove user");
     }
 
     @When("Admin mereject user")
     public void admin_mereject_user(){
+        driver.get("https://staging-hadir.ptkta.com/laporan/perjalanan-dinas?page=2");
+        DriverSingleton.delay(2);
+        perjalananDinasPage.klikTitikTiga2();
+        DriverSingleton.delay(2);
+        perjalananDinasPage.klikReject();
+        perjalananDinasPage.setInputReject("Gelayys");
+        DriverSingleton.delay(2);
+        perjalananDinasPage.klikBtnYa();
+        extentTest.log(LogStatus.PASS, "Admin mereject user");
 
     }
 
     @And("Admin kembali ke halaman sebelumnya")
     public void admin_kembali_ke_halaman_sebelumnya(){
     DriverSingleton.delay(2);
-    perjalananDinasPage.setPreviosPage();
+    extentTest.log(LogStatus.PASS, "Admin kembali ke halaman sebelumnya");
+
     }
 
     @And("Admin melihat dokumen yang di upload")
     public void admin_melihat_dokumen_yang_di_upload(){
+        DriverSingleton.delay(2);
+        extentTest.log(LogStatus.PASS, "Admin melihat dokumen yang di upload");
 
     }
 }

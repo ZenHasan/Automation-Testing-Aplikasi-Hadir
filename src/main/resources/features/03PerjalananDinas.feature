@@ -7,14 +7,14 @@ Feature: Perjalanan Dinas
   Scenario: Verifikasi mencari data melalui tanggal pada halaman perjalanan dinas
     Given  Admin menginput tanggal mulai dan tanggal akhir pada perjalanan dinas
     And Admin mengklik tombol cari pada halaman perjalanan dinas
-    Then Tampilan data perjalanan dinas berhasil di muat
+    Then Tampilan data tanggal perjalanan dinas berhasil di muat
 
   Scenario: Verifikasi mencari data melalui nama
     Given Admin menginput nama yang akan di cari pada perjalanan dinas
     And Admin mengklik tombol cari pada halaman perjalanan dinas
-    Then Tampilan data perjalanan dinas berhasil di muat
+    Then Tampilan data nama user perjalanan dinas berhasil di muat
 
-  Scenario: Verifikasi ke halaman selanjutnya
+  Scenario: Verifikasi ke halaman data selanjutnya dan sebelumnya
     Given Halaman selanjutnya dan mengaprove user
     When Admin mereject user
     And Admin kembali ke halaman sebelumnya

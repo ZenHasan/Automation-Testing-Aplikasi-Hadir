@@ -1,5 +1,6 @@
 package com.juaracoding;
 
+import com.juaracoding.drivers.DriverSingleton;
 import com.juaracoding.pages.DayOffPage;
 import com.juaracoding.pages.LoginPage;
 import com.juaracoding.utils.Constant;
@@ -13,6 +14,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 import java.io.IOException;
+import java.sql.Driver;
 
 public class DayOffTest {
     private static WebDriver driver;
@@ -41,14 +43,10 @@ public class DayOffTest {
         extentTest.log(LogStatus.PASS, "Navigasikan ke menu Management dan sub-menu Day Off");
     }
 
-    @Then("Verifikasi tampilan data day off")
+    @Then("Verifikasi tampilan data cuti bersama dan liburan nasional")
     public void verifikasi_tampilan_data_day_off(){
-        try {
-            Assert.assertTrue(dayOffPage.isDayOffPageLoaded(), "Halaman Day Off tidak dimuat");
-            Utils.getScreenshot(driver, "DayOffPageLoaded");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Assert.assertEquals(dayOffPage.getTeksCutiBersama(),"Cuti Bersama");
+        Assert.assertEquals(dayOffPage.getTeksLiburanNasional(),"Liburan Nasional");
         extentTest.log(LogStatus.PASS, "Verifikasi tampilan data Day Off");
     }
 }

@@ -47,8 +47,37 @@ public class PerjalananDinasPage {
     @FindBy(xpath = "//button[@title='Go to next page']//*[name()='svg']")
     private WebElement nextPage;
 
+    @FindBy(xpath = "//tbody/tr[3]/td[7]/div[1]/div[1]/button[1]//*[name()='svg']")
+    private WebElement titikTiga;
+
+    @FindBy(xpath = "/html/body/div[5]/div[3]/ul/li[1]")
+    private WebElement approve;
+
+    @FindBy(xpath = "//div[2]/button")
+    private WebElement btnYa;
+
+    @FindBy(xpath = "/html/body/div[7]/div[3]/div/form/div[2]/button[2]")
+    private WebElement btnBatal;
+
+    @FindBy(xpath = "//tbody/tr[4]/td[7]/div[1]/div[1]/button[1]//*[name()='svg']")
+    private WebElement titikTiga2;
+
+    @FindBy(xpath = "/html/body/div[6]/div[3]/ul/li[2]")
+    private WebElement reject;
+
+    @FindBy(xpath = "//*[@id=\"rejectReason\"]")
+    private WebElement inputReject;
+
+
     @FindBy(xpath = "//button[@title='Go to previous page']//*[name()='svg']")
     private WebElement previosPage;
+
+    @FindBy(xpath = "//tbody/tr[1]/td[2]/h6[1]")
+    private WebElement namaUser;
+
+    @FindBy(xpath = "//h6[normalize-space()='04 Apr 2024']")
+    private WebElement tanggal;
+
 
 
     public void goToMenuLaporan(){
@@ -97,24 +126,52 @@ public class PerjalananDinasPage {
         nextPage.click();
     }
 
+    public void klikTitikTiga(){
+        titikTiga.click();
+    }
+
+    public void klikApprove(){
+        approve.click();
+    }
+
+    public void klikBtnYa(){
+        btnYa.click();
+    }
+
+    public void klikBtnBatal(){
+        btnBatal.click();
+    }
+
+    public void klikTitikTiga2(){
+        titikTiga2.click();
+    }
+
+    public void klikReject(){
+        reject.click();
+    }
+
+    public void setInputReject(String howReject){
+        inputReject.sendKeys(howReject);
+    }
+
     public void setPreviosPage(){
         previosPage.click();
     }
 
-    public boolean isPerjalananDinasPageLoaded() {
-        // Implement logic to verify if Koreksi page is loaded
-        return true;
+    public String getNamaUser(){
+        return namaUser.getText();
     }
 
-    public boolean areFieldsCleared() {
-        // Implement logic to verify if fields are cleared
-        return startDateField.getText().isEmpty() && endDateField.getText().isEmpty();
+    public String getTanggal(){
+        return tanggal.getText();
     }
 
-    public void clearDataDate(){
+    public void clearStartDataDate(){
         startDateField.sendKeys(Keys.CONTROL + "a");
         startDateField.sendKeys(Keys.DELETE);
+    }
 
+    public void clearEndDataDate(){
         endDateField.sendKeys(Keys.CONTROL + "a");
         endDateField.sendKeys(Keys.DELETE);
     }

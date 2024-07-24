@@ -6,7 +6,6 @@ public class Constant {
 
     public final static String URL = "https://staging-hadir.ptkta.com/authentication/login";
 
-//    public final static String URLKoreksi = "https://staging-hadir.ptkta.com/laporan/koreksi";
-
+    public final static String URLUser = "https://staging-hadir.ptkta.com/apps/absent";
 
 }

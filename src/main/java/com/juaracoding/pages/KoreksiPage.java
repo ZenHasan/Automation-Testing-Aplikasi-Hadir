@@ -41,6 +41,12 @@ public class KoreksiPage {
     @FindBy(xpath = "//button[normalize-space()='Reset']")
     private WebElement resetButton;
 
+    @FindBy(xpath = "//tbody/tr[3]/td[7]/h6[1]")
+    private WebElement tanggal;
+
+    @FindBy(xpath = "//tbody/tr[1]/td[2]/h6[1]")
+    private WebElement nama;
+
     @FindBy(xpath = "//button[@title='Go to next page']//*[name()='svg']")
     private WebElement nextPage;
 
@@ -50,14 +56,22 @@ public class KoreksiPage {
     @FindBy(xpath = "//tbody/tr[1]/td[10]/div[1]/button[1]//*[name()='svg']")
     private WebElement aprroval;
 
-    @FindBy(xpath = "//tbody/tr[1]/td[10]/div[1]/button[2]//*[name()='svg']")
+    @FindBy(xpath = "/html/body/div[3]/div[3]/div/form/div[2]/button[1]")
+    private WebElement btnYa;
+
+    @FindBy(xpath = "//div[@class='MuiSnackbarContent-message css-1w0ym84']")
+    private WebElement pesanApproved;
+
+    @FindBy(xpath = "//tbody/tr[2]/td[10]/div[1]/button[2]//*[name()='svg']")
     private WebElement reject;
 
     @FindBy(xpath = "//*[@id=\"rejectReason\"]")
     private WebElement inputReject;
 
+    @FindBy(xpath = "/html/body/div[3]/div[3]/div/form/div[2]/button[1]")
+    private WebElement btnTolak;
 
-    @FindBy(xpath = "//div[@class='validation_message']")
+    @FindBy(xpath = "//div[@class='MuiSnackbarContent-message css-1w0ym84']")
     private WebElement validationMessage;
 
     public void goToMenuLaporan(){
@@ -96,6 +110,14 @@ public class KoreksiPage {
         resetButton.click();
     }
 
+    public String getTanggal(){
+        return tanggal.getText();
+    }
+
+    public String getNama(){
+        return nama.getText();
+    }
+
     public void setNextPage(){
         nextPage.click();
     }
@@ -106,6 +128,14 @@ public class KoreksiPage {
 
     public void btnApproval(){
         aprroval.click();
+    }
+
+    public void klikBtnYa(){
+        btnYa.click();
+    }
+
+    public String getPesanApproved(){
+        return pesanApproved.getText();
     }
 
     public void btnReject(){
@@ -120,25 +150,12 @@ public class KoreksiPage {
         return validationMessage.getText();
     }
 
-    public boolean isKoreksiPageLoaded() {
-        // Implement logic to verify if Koreksi page is loaded
-        return true;
-    }
-
-    public boolean isDataDisplayed() {
-        // Implement logic to verify if data is displayed
-        return true;
-    }
-
-    public boolean areFieldsCleared() {
-        // Implement logic to verify if fields are cleared
-        return startDateField.getText().isEmpty() && endDateField.getText().isEmpty();
-    }
-
-    public void clearDataDate(){
+    public void clearStartDate(){
         startDateField.sendKeys(Keys.CONTROL + "a");
         startDateField.sendKeys(Keys.DELETE);
+    }
 
+    public void clearEndDate(){
         endDateField.sendKeys(Keys.CONTROL + "a");
         endDateField.sendKeys(Keys.DELETE);
     }

@@ -7,12 +7,12 @@ Feature: Koreksi Laporan
   Scenario: Verifikasi mencari data melalui tanggal
     Given Admin menginput tanggal mulai dan tanggal akhir
     And Admin mengklik tombol cari
-    Then Tampilan data koreksi berhasil di muat
+    Then Tampilan data tanggal koreksi berhasil di muat
 
   Scenario: Verifikasi mencari data melalui nama
     Given Admin menginput nama yang akan di cari
     And Admin mengklik tombol cari
-    Then Tampilan data koreksi berhasil di muat
+    Then Tampilan data nama koreksi berhasil di muat
 
   Scenario: Verifikasi aprove data
     Given Admin ke halaman selanjutnya
